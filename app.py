@@ -1,16 +1,6 @@
-# -*- encoding: utf-8 -*-
-"""
-Flask Boilerplate
-Author: AppSeed.us - App Generator 
-"""
-
 import os
 from app import app
 from app import db
-
-#----------------------------------------
-# launch
-#----------------------------------------
 
 if __name__ == "__main__":
 	db.create_all()

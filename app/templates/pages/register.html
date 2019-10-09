@@ -1,4 +1,5 @@
-
+{% extends "layouts/default.html" %}
+{% block content %}
       <div class="panel-header panel-header-sm">
       </div>
       <div class="content">
@@ -27,13 +28,30 @@
 
                         <div class="col-md-3 pr-1">
                             <div class="form-group">
-                                <label>Friendly Name (e.g. John Doe)</label>
+                                <label>First Name</label>
                             </div>
                         </div>
 
                         <div class="col-md-6 pr-1">
                             <div class="form-group">
-                                {{ form.name(placeholder="Friendly Name",class="form-control") }}
+                                {{ form.firstName(placeholder="First Name",class="form-control") }}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-1 pr-1"></div>
+
+                        <div class="col-md-3 pr-1">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 pr-1">
+                            <div class="form-group">
+                                {{ form.lastName(placeholder="Last Name",class="form-control") }}
                             </div>
                         </div>
 
@@ -63,7 +81,7 @@
 
                         <div class="col-md-3 pr-1">
                             <div class="form-group">
-                                <label>eMail</label>
+                                <label>E-Mail</label>
                             </div>
                         </div>
 
@@ -114,3 +132,4 @@
         </div>
       </div>
 
+{% endblock content %}

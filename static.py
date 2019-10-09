@@ -1,9 +1,3 @@
-# -*- encoding: utf-8 -*-
-"""
-Flask Boilerplate
-Author: AppSeed.us - App Generator 
-"""
-
 import os
 from app import app
 from flask_frozen import Freezer

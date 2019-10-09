@@ -1,80 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% if title %}
+      <title>ipNX dashboard - {{ title }}</title>
+    {% else %}
+      <title>ipNX dashboard</title>
+    {% endif %}
+  <!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="/static/assets/custom/login/images/icons/favicon.ico" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/static/assets/custom/login/vendor/bootstrap/css/bootstrap.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/static/assets/custom/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/static/assets/custom/login/fonts/iconic/css/material-design-iconic-font.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/static/assets/custom/login/vendor/animate/animate.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/static/assets/custom/login/vendor/css-hamburgers/hamburgers.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/static/assets/custom/login/vendor/animsition/css/animsition.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/static/assets/custom/login/vendor/select2/select2.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/static/assets/custom/login/vendor/daterangepicker/daterangepicker.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/static/assets/custom/login/css/util.css">
+  <link rel="stylesheet" type="text/css" href="/static/assets/custom/login/css/main.css">
+  <!--===============================================================================================-->
+</head>
 
-      <div class="panel-header panel-header-sm">
-      </div>
-      <div class="content">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="title">Login</h5>
+<body>
+<div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <form class="login100-form validate-form" method="POST" action="">
+          {{ form.hidden_tag() }}
+          <span class="login100-form-logo">
+            <img src="/static/assets/custom/login/images/logo.png" alt="">
+          </span>
 
-                {% if msg %}
-                    <label>{{ msg | safe }}</label>
-                {% else %}
-                    <label>Sign in with your credentials</label>
-                {% endif %}
-
-              </div>
-              <div class="card-body">
-
-                <form role="form" method="post" action="">
-
-                    {{ form.hidden_tag() }}
-
-                    <div class="row">
-
-                        <div class="col-md-1 pr-1"></div>
-
-                        <div class="col-md-2 pr-1">
-                            <div class="form-group">
-                                <label>Username</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 pr-1">
-                            <div class="form-group">
-                                {{ form.username(placeholder="Username",class="form-control") }}
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-md-1 pr-1"></div>
-
-                        <div class="col-md-2 pr-1">
-                            <div class="form-group">
-                                <label>Password</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 pr-1">
-                            <div class="form-group">
-                                {{ form.password(placeholder="Password",class="form-control",type="password") }}
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-1 pr-1"></div>
-
-                        <div class="col-md-2 pr-1">
-                            <button type="submit" class="btn btn-fill btn-primary">Log in</button> 
-                        </div>
-
-                    </div>
-
-                    </form>
-                </div>
-              </div>
-              <div class="card-footer">
-                No account? Please &nbsp;&nbsp; <a href={{ url_for('register') }}>register</a>
-              </div>
-
+          <span class="login100-form-title p-b-34 p-t-27">
+            Log in
+          </span>
+          {% for message in get_flashed_messages() %}
+            <div class="text-center p-t-5 p-b-5">
+              <p class="error">
+                {{ message }}
+              </p>      
+            </div>
+           {% endfor %}
+          <div class="wrap-input100 validate-input" data-validate="Enter E-mail">
+            {{ form.email(class="input100",placeholder="E-mail") }}
+            <span class="focus-input100" data-placeholder="&#xf207;"></span>
           </div>
 
-        </div>
-      </div>
+          <div class="wrap-input100 validate-input" data-validate="Enter password">
+            {{ form.password(placeholder="Password",class="input100") }}
+            <span class="focus-input100" data-placeholder="&#xf191;"></span>
+          </div>
 
+          <div class="contact100-form-checkbox">
+            {{ form.remember(class="input-checkbox100",id="ckb1",type="checkbox") }}
+            <label class="label-checkbox100" for="ckb1">
+              Remember me
+            </label>
+          </div>
+
+          <div class="container-login100-form-btn">
+            
+              {{ form.submit(class="login100-form-btn") }}
+            
+          </div>
+
+          <div class="text-center p-t-10">
+            <a class="txt1" href="#">
+              Forgot Password?
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--===============================================================================================-->
+  <script src="/static/assets/custom/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="/static/assets/custom/login/vendor/animsition/js/animsition.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="/static/assets/custom/login/vendor/bootstrap/js/popper.js"></script>
+  <script src="/static/assets/custom/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="/static/assets/custom/login/vendor/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="/static/assets/custom/login/vendor/daterangepicker/moment.min.js"></script>
+  <script src="/static/assets/custom/login/vendor/daterangepicker/daterangepicker.js"></script>
+  <!--===============================================================================================-->
+  <script src="/static/assets/custom/login/vendor/countdowntime/countdowntime.js"></script>
+  <!--===============================================================================================-->
+  <script src="/static/assets/custom/login/js/main.js"></script>
+
+</body>
+
+</html>

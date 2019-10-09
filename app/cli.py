@@ -1,9 +1,3 @@
-# -*- encoding: utf-8 -*-
-"""
-Flask Boilerplate
-Author: AppSeed.us - App Generator 
-"""
-
 import      datetime,time,os,re
 from sqlalchemy  import desc,or_
 
@@ -38,7 +32,7 @@ def create_user( email, name, username, password):
     print( "user created ok: " + str( user.id ) )
     return user 
 
-# @ToDo - to be moved in a test file
+@ToDo 
 def create_test_users():
-    create_user( 'test@yahoo.com', 'Test User', 'test', 'pass1234') 
+    create_user( 'sirneij@gmail.com', 'Sirneij', 'sirneij', 'sirneij') 
                

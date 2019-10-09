@@ -6,49 +6,57 @@
   <div class="sidebar-wrapper" id="sidebar-wrapper">
     <ul class="nav" id="myNav">
       <li>
-        <a href="/">
+        <a href={{ url_for('index') }}>
           <i class="now-ui-icons business_chart-bar-32"></i>
           <p>Home Page</p>
         </a>
       </li>
       <li>
-        <a href="/retailsupport.html">
+        <a href={{ url_for('retailsupport') }}>
           <i class="now-ui-icons business_badge"></i>
           <p>Retail Support</p>
         </a>
       </li>
       <li>
-        <a href="/ticketingresolution.html">
+        <a href={{ url_for('ticketingresolution') }}>
           <i class="now-ui-icons shopping_credit-card"></i>
           <p>Ticketing and Resolution</p>
         </a>
       </li>
       <li>
-        <a href="/emailescalation.html">
+        <a href={{ url_for('emailescalation') }}>
           <i class="now-ui-icons ui-1_email-85"></i>
           <p>Email & Escalation</p>
         </a>
       </li>
       <li>
-        <a href="/ishop.html">
+        <a href={{ url_for('ishop') }}>
           <i class="now-ui-icons shopping_cart-simple"></i>
           <p>i-SHOP</p>
         </a>
       </li>
 
       <li>
-        <a href="/social.html">
+        <a href={{ url_for('social') }}>
           <i class="now-ui-icons ui-2_chat-round"></i>
           <p>Social Media</p>
         </a>
       </li>
 
       <li>
-        <a href="/cxretention.html">
+        <a href={{ url_for('cxretention') }}>
           <i class="now-ui-icons business_briefcase-24"></i>
           <p>CX & Retention</p>
         </a>
       </li>
+      {% if current_user.email == 'jidogun@ipnxnigeria.net' %}
+      <li>
+        <a href={{ url_for('register') }}>
+          <i class="now-ui-icons business_briefcase-24"></i>
+          <p>Register</p>
+        </a>
+      </li>
+      {% endif %}
       {% if current_user.is_authenticated %}
 
       <li>
@@ -57,16 +65,13 @@
           <p>Logout</p>
         </a>
       </li>
-
       {% else %}
-
-      <li>
-        <a href={{ url_for('login') }}>
-          <i class="now-ui-icons sport_user-run"></i>
-          <p>Login</p>
-        </a>
-      </li>
-
+          <li>
+            <a href={{ url_for('login') }}>
+              <i class="now-ui-icons sport_user-run"></i>
+              <p>Login</p>
+            </a>
+          </li>
       {% endif %}
     </ul>
   </div>

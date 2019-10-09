@@ -4,7 +4,7 @@ A realtime dashboard built on Creative Tim's dashboard template.
 
 1. Clone the repo
   ```
-  $ git clone https://github.com/app-generator/flask-now-ui-dashboard.git
+  $ git clone https://github.com/Sirneij/flask-dashboard.git
   $ cd flask-now-ui-dashboard
   ```
 

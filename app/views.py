@@ -1,9 +1,11 @@
 # all the imports necessary
+
 from flask import json, url_for, redirect, Markup, Response, render_template, flash, g, session, jsonify, request, send_from_directory
 from werkzeug.exceptions import HTTPException, NotFound, abort
 
 import os
-
+import secrets
+from PIL import Image
 from app  import app
 
 from flask       import url_for, redirect, render_template, flash, g, session, jsonify, request, send_from_directory
@@ -13,7 +15,6 @@ from . models    import User
 from . common    import COMMON, STATUS
 from . assets    import *
 from . forms     import LoginForm, RegisterForm, UpdateAccountForm
-from . util      import save_picture
 import os, shutil, re, cgi, json, random, time
 from datetime import datetime
 
@@ -40,6 +41,19 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/profile', picture_fn)
+
+    output_size = (125, 125)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+
+    return picture_fn
+
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
@@ -49,6 +63,11 @@ def account():
             picture_file = save_picture(form.picture.data)
             current_user.image_file = picture_file
         current_user.username = form.username.data
+        current_user.email = form.email.data
+        current_user.firstName = form.firstName.data
+        current_user.lastName = form.lastName.data
+        current_user.about = form.about.data
+        user = User(username=current_user.username, firstName=current_user.firstName, email=current_user.email, lastName=current_user.lastName, about=current_user.about, image_file=image_file)
         db.session.commit()
         flash('Your account has been updated!', 'success')
         return redirect(url_for('account'))
@@ -61,7 +80,7 @@ def account():
     return render_template( 'pages/account.html', title='Account details', description='ipNX Dashboard', image_file=image_file, form=form)
 # register user
 @app.route('/register', methods=['GET', 'POST'])
-@login_required
+
 def register():
     
     # define login form here
@@ -73,7 +92,7 @@ def register():
     if form.validate_on_submit():
 
         hashed_password = bc.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, password=hashed_password, firstName=form.firstName.data, email=form.email.data, lastName=form.lastName.data)
+        user = User(username=form.username.data, password=hashed_password, firstName=form.firstName.data, email=form.email.data, lastName=form.lastName.data, about=form.about.data, image_file=form.picture.data)
         user.save()
         msg = 'User created, please <a href="' + url_for('login') + '">login</a>'     
 

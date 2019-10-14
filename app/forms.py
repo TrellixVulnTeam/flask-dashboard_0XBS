@@ -16,6 +16,8 @@ class RegisterForm(FlaskForm):
 	email       = StringField  (u'Email'     , validators=[DataRequired(), Email()])
 	firstName   = StringField  (u'FirstName'      , validators=[DataRequired()])
 	lastName	= StringField  (u'LastName'      , validators=[DataRequired()])
+	about 		= TextAreaField  (u'About')
+	picture 	= FileField('Upload Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
 	def validate_username(self, username):
 		user = User.query.filter_by(username=username.data).first()
 		if user:
@@ -31,13 +33,10 @@ class UpdateAccountForm(FlaskForm):
     email       = StringField  (u'Email', validators=[DataRequired(), Email()])
     firstName   = StringField  (u'FirstName', validators=[DataRequired()])
     lastName	= StringField  (u'LastName', validators=[DataRequired()])
+    about		= TextAreaField  (u'About')
     picture 	= FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
     submit 		= SubmitField('Update')
 
-    def validate_username(self, username):
-        if username.data != current_user.username:
-            user = User.query.filter_by(username=username.data).first()
-            if user:
-                raise ValidationError('That username is taken. Please choose a different one.')
+    
 
     

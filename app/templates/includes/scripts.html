@@ -20,5 +20,20 @@
 <script src="/static/assets/custom/socialcharts.js" type="text/javascript"></script>
 <script src="/static/assets/custom/ticketingresolutioncharts.js" type="text/javascript"></script>
 <script type="text/javascript">
-  
+$(function () {
+    setNavigation();
+});
+
+function setNavigation() {
+    var path = window.location.pathname;
+    path = path.replace(/\/$/, "");
+    path = decodeURIComponent(path);
+
+    $(".nav a").each(function () {
+        var href = $(this).attr('href');
+        if (path.substring(0, href.length) === href) {
+            $(this).closest('li').addClass('active');
+        }
+    });
+}
 </script>

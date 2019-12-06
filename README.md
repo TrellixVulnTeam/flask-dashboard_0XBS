@@ -4,7 +4,7 @@ A realtime dashboard built on Creative Tim's dashboard template.
 A realtime dashboard built on Creative Tim's dashboard template.
 ## Build from sources
 
-#Caveat: This application works primarily with python 3.6+. For python 3.8 systems, ensure you upgrade your dependencies, especially SQLAlchemy and Flask-SQLAlchemy to their latest versions. Older versions of these dependencies have a deprecated method `time.clock` which has been removed in python 3.8. Upgrading these dependencies to will solve the problems you may encounter while running this app.
+#Caveat: This application works primarily with python 3.6+. For python 3.8 systems, ensure you upgrade your dependencies, especially SQLAlchemy and Flask-SQLAlchemy to their latest versions. Older versions of these dependencies have a deprecated method `time.clock` which has been removed in python 3.8. Upgrading these dependencies will solve the problems you may encounter while running this app.
 
 #To Run using python3.6+:
 After cloning this app, see how to clone below:
